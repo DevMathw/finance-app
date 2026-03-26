@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": "92942496-46ff-4ba6-abcd-97da2755f168",
+      "name": "Mateo",
+      "email": "mateogarcia13.mg@gmail.com",
+      "password": "$2b$10$E.4e.qSr4WlArs174EhJPeF8O7aVibLNoCQdWe33yqYGFDSIPnaU.",
+      "createdAt": "2026-03-26T15:40:15.089Z"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "a54db688-a3c0-4c26-bbdc-dbd728c6a5ea",
+      "userId": "92942496-46ff-4ba6-abcd-97da2755f168",
+      "type": "expense",
+      "amount": 350000,
+      "description": "Mercado",
+      "category": "alimentación",
+      "date": "2026-03-17T00:00:00.000Z",
+      "notes": "",
+      "createdAt": "2026-03-26T15:40:54.243Z"
+    },
+    {
+      "id": "3a32049f-43a6-486d-b1f5-c80748881f54",
+      "userId": "92942496-46ff-4ba6-abcd-97da2755f168",
+      "type": "income",
+      "amount": 1500000,
+      "description": "Página Web",
+      "category": "otros",
+      "date": "2026-03-25T00:00:00.000Z",
+      "notes": "",
+      "createdAt": "2026-03-26T15:41:23.113Z"
+    },
+    {
+      "id": "46ee8bc2-e680-4003-98c1-75ab79ce6ec5",
+      "userId": "92942496-46ff-4ba6-abcd-97da2755f168",
+      "type": "income",
+      "amount": 50000,
+      "description": "Pasajes",
+      "category": "transporte",
+      "date": "2026-03-25T00:00:00.000Z",
+      "notes": "",
+      "createdAt": "2026-03-26T16:34:23.709Z"
+    }
+  ]
+}
