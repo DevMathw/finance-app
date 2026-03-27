@@ -1,0 +1,14 @@
+.btn {
+  width:         34px;
+  height:        34px;
+  border-radius: var(--r-sm);
+  border:        1px solid var(--border);
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+  transition:    all var(--t-fast);
+  background:    var(--bg-elevated);
+}
+.dark  { color: var(--amber); border-color: rgba(251,191,36,0.2); }
+.light { color: var(--text-2); }
+.btn:hover { border-color: var(--border-hover); color: var(--text-1); }

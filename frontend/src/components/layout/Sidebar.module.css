@@ -1,0 +1,139 @@
+.sidebar {
+  grid-column:  1;
+  grid-row:     2;
+  width:        var(--sidebar-w);
+  background:   var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display:      flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding:      16px 8px;
+  position:     sticky;
+  top:          var(--navbar-h);
+  height:       calc(100vh - var(--navbar-h));
+  overflow:     hidden;
+  transition:   width var(--t-slow) var(--ease);
+  z-index:      50;
+}
+
+/* Expandido al hover */
+.exp { width: var(--sidebar-w-exp); }
+
+.nav     { display: flex; flex-direction: column; gap: 2px; }
+.section {
+  font-size:      0.6rem;
+  font-weight:    700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color:          var(--text-3);
+  padding:        4px 10px;
+  margin-bottom:  4px;
+  white-space:    nowrap;
+  overflow:       hidden;
+}
+
+.link {
+  display:       flex;
+  align-items:   center;
+  gap:           10px;
+  padding:       9px 10px;
+  border-radius: var(--r-sm);
+  color:         var(--text-2);
+  transition:    background var(--t-fast), color var(--t-fast);
+  position:      relative;
+  white-space:   nowrap;
+  overflow:      hidden;
+}
+.link:hover { background: var(--bg-elevated); color: var(--text-1); }
+
+.active {
+  background: var(--lime-dim) !important;
+  color:      var(--lime-bright) !important;
+}
+.active:hover { background: rgba(163,230,53,0.15) !important; }
+
+.iconWrap {
+  width:       32px;
+  height:      32px;
+  display:     flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.linkLabel {
+  font-size:  0.875rem;
+  font-weight: 500;
+  opacity:    0;
+  transform:  translateX(-8px);
+  transition: opacity var(--t-base) var(--ease),
+              transform var(--t-base) var(--ease);
+}
+
+/* Labels visibles cuando expandido */
+.exp .linkLabel {
+  opacity:   1;
+  transform: translateX(0);
+}
+
+/* Punto activo — visible solo en estado colapsado */
+.activeDot {
+  position:      absolute;
+  right:         8px;
+  width:         5px;
+  height:        5px;
+  border-radius: 50%;
+  background:    var(--lime);
+  opacity:       0;
+  transition:    opacity var(--t-fast);
+}
+.active .activeDot    { opacity: 1; }
+.exp   .activeDot     { opacity: 0; }
+
+.footer { padding: 4px 10px; }
+.ver    { font-size: 0.65rem; color: var(--text-3); white-space: nowrap; }
+
+/* Hamburguesa — solo móvil */
+.hamburger {
+  display:       none;
+  position:      fixed;
+  bottom:        24px;
+  right:         20px;
+  z-index:       300;
+  width:         44px;
+  height:        44px;
+  border-radius: 50%;
+  border:        1px solid var(--lime-border);
+  background:    var(--lime-dim);
+  color:         var(--lime);
+  align-items:   center;
+  justify-content: center;
+  box-shadow:    var(--shadow-lime);
+}
+
+.overlay {
+  display:  none;
+  position: fixed;
+  inset:    0;
+  top:      var(--navbar-h);
+  background: rgba(0,0,0,0.6);
+  z-index:  200;
+  backdrop-filter: blur(2px);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position:  fixed;
+    top:       var(--navbar-h);
+    left:      0;
+    height:    calc(100vh - var(--navbar-h));
+    width:     var(--sidebar-w-exp);
+    z-index:   250;
+    transform: translateX(-100%);
+    transition: transform var(--t-slow) var(--ease);
+  }
+  .sidebar .linkLabel { opacity: 1; transform: none; }
+  .mobileOpen         { transform: translateX(0); }
+  .hamburger          { display: flex; }
+  .overlay            { display: block; }
+}
