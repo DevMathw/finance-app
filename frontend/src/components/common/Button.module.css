@@ -25,7 +25,7 @@
 /* ── Variantes ─────────────────────────────── */
 .primary {
   background: linear-gradient(135deg, var(--lime-bright), var(--lime));
-  color:      #0a0a0f;
+  color:      var(--text-4);
   box-shadow: 0 2px 8px var(--lime-glow);
 }
 .primary:hover:not(:disabled) {

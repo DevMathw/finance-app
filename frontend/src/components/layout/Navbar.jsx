@@ -10,14 +10,14 @@ export default function Navbar() {
   const { user, logout } = useAuth()
 
   const hour = new Date().getHours()
-  const greet = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening'
+  const greet = hour < 12 ? 'Buenos días' : hour < 18 ? 'Buenas tardes' : 'Buenas noches'
 
   return (
     <header className={styles.bar}>
       {/* Izquierda: marca */}
       <div className={styles.brand}>
         <span className={styles.logo}>◈</span>
-        <span className={`${styles.name} heading`}>Finanzas</span>
+        <span className={`${styles.name} heading`}>FinanceApp</span>
       </div>
 
       {/* Derecha: acciones */}

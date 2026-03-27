@@ -27,14 +27,19 @@ export default function Login() {
   const submit = async (e) => {
     e.preventDefault()
     setLoading(true); setError(null)
-    try {
+    try 
+    {
       const fn  = mode === 'login' ? loginUser : registerUser
       const res = await fn(form)
       login(res.user, res.token)
       navigate('/')
-    } catch (err) {
+    } 
+    catch (err) 
+    {
       setError(err.response?.data?.error || 'Error al procesar la solicitud.')
-    } finally {
+    } 
+    finally
+    {
       setLoading(false)
     }
   }
@@ -55,7 +60,7 @@ export default function Login() {
         {/* Marca */}
         <div className={styles.brand}>
           <span className={styles.logo}>◈</span>
-          <span className={`${styles.appName} heading`}>Finanzas</span>
+          <span className={`${styles.appName} heading`}>FinanceApp</span>
         </div>
 
         {/* Encabezado */}
@@ -132,7 +137,6 @@ export default function Login() {
           <Button
             type="submit" fullWidth size="lg"
             loading={loading}
-            iconRight={!loading && <ArrowRight size={16} />}
             className="animate-up d-4"
           >
             {mode === 'login' ? 'Iniciar sesión' : 'Crear mi cuenta'}
@@ -150,7 +154,7 @@ export default function Login() {
             className={styles.switchBtn}
             onClick={() => { setMode((m) => m === 'login' ? 'register' : 'login'); setForm(EMPTY); setError(null) }}
           >
-            {mode === 'login' ? 'Regístrate gratis →' : 'Inicia sesión →'}
+            {mode === 'login' ? 'Regístrate gratis' : 'Inicia sesión'}
           </button>
         </p>
       </div>

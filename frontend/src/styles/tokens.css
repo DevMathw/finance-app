@@ -34,6 +34,7 @@
   --text-1:       #0d0d0d;
   --text-2:       #5a5a72;
   --text-3:       #ababc0;
+  --text-4:       #f4f4f8;
 
   /* Bordes */
   --border:       rgba(0, 0, 0, 0.08);
@@ -105,6 +106,8 @@
   --text-1:       #f4f4f8;
   --text-2:       #8585a0;
   --text-3:       #3d3d55;
+  --text-4:       #0d0d0d;
+
 
   /* Bordes */
   --border:       rgba(255,255,255,0.06);
