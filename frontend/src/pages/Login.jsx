@@ -4,7 +4,7 @@
  */
 import { useState }                from 'react'
 import { useNavigate }             from 'react-router-dom'
-import { Mail, Lock, User, ArrowRight, Eye, EyeOff } from 'lucide-react'
+import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react'
 import { loginUser, registerUser } from '../api/authApi'
 import { useAuth }                 from '../context/AuthContext'
 import Button                      from '../components/common/Button'
