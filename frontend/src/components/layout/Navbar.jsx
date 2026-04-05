@@ -1,5 +1,7 @@
 /**
- * Navbar.jsx — barra superior compacta con saludo + acciones.
+ * Navbar.jsx — Editorial Finance
+ * Logo en Fraunces itálica (marca editorial).
+ * Fondo translúcido con blur.
  */
 import { Bell, LogOut }  from 'lucide-react'
 import { useAuth }       from '../../context/AuthContext'
@@ -9,18 +11,18 @@ import styles            from './Navbar.module.css'
 export default function Navbar() {
   const { user, logout } = useAuth()
 
-  const hour = new Date().getHours()
+  const hour  = new Date().getHours()
   const greet = hour < 12 ? 'Buenos días' : hour < 18 ? 'Buenas tardes' : 'Buenas noches'
 
   return (
     <header className={styles.bar}>
-      {/* Izquierda: marca */}
+      {/* Marca — logo en Fraunces itálica */}
       <div className={styles.brand}>
-        <span className={styles.logo}>◈</span>
-        <span className={`${styles.name} heading`}>FinanceApp</span>
+        <span className={styles.logoMark}>◈</span>
+        <span className={styles.logoName}>Finanzas</span>
       </div>
 
-      {/* Derecha: acciones */}
+      {/* Acciones */}
       <div className={styles.right}>
         {user && (
           <span className={styles.greet}>
@@ -31,13 +33,17 @@ export default function Navbar() {
         <ThemeToggle />
 
         <button className={styles.iconBtn} aria-label="Notificaciones">
-          <Bell size={16} strokeWidth={2} />
-          <span className={styles.dot} />
+          <Bell size={15} strokeWidth={2} />
         </button>
 
         {user && (
-          <button className={styles.iconBtn} onClick={logout} aria-label="Cerrar sesión" title="Cerrar sesión">
-            <LogOut size={16} strokeWidth={2} />
+          <button
+            className={styles.iconBtn}
+            onClick={logout}
+            aria-label="Cerrar sesión"
+            title="Cerrar sesión"
+          >
+            <LogOut size={15} strokeWidth={2} />
           </button>
         )}
       </div>

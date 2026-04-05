@@ -1,139 +1,113 @@
 .sidebar {
-  grid-column:  1;
-  grid-row:     2;
-  width:        var(--sidebar-w);
-  background:   var(--bg-sidebar);
-  border-right: 1px solid var(--border);
-  display:      flex;
+  grid-column:    1;
+  grid-row:       2;
+  width:          var(--sidebar-w);
+  background:     var(--bg);
+  border-right:   1px solid var(--border);
+  display:        flex;
   flex-direction: column;
   justify-content: space-between;
-  padding:      16px 8px;
-  position:     sticky;
-  top:          var(--navbar-h);
-  height:       calc(100vh - var(--navbar-h));
-  overflow:     hidden;
-  transition:   width var(--t-slow) var(--ease);
-  z-index:      50;
+  padding:        20px 10px;
+  position:       sticky;
+  top:            var(--navbar-h);
+  height:         calc(100vh - var(--navbar-h));
+  overflow-y:     auto;
 }
 
-/* Expandido al hover */
-.exp { width: var(--sidebar-w-exp); }
-
-.nav     { display: flex; flex-direction: column; gap: 2px; }
-.section {
+.nav          { display: flex; flex-direction: column; gap: 2px; }
+.sectionLabel {
   font-size:      0.6rem;
   font-weight:    700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color:          var(--text-3);
-  padding:        4px 10px;
-  margin-bottom:  4px;
-  white-space:    nowrap;
-  overflow:       hidden;
+  color:          var(--muted);
+  padding:        4px 10px 8px;
+  opacity:        0.6;
 }
 
 .link {
-  display:       flex;
-  align-items:   center;
-  gap:           10px;
-  padding:       9px 10px;
-  border-radius: var(--r-sm);
-  color:         var(--text-2);
-  transition:    background var(--t-fast), color var(--t-fast);
-  position:      relative;
-  white-space:   nowrap;
-  overflow:      hidden;
+  display:         flex;
+  align-items:     center;
+  gap:             10px;
+  padding:         8px 10px;
+  border-radius:   var(--r-sm);
+  font-size:       0.875rem;
+  font-weight:     500;
+  color:           var(--muted);
+  text-decoration: none;
+  transition:      background var(--t-fast), color var(--t-fast) !important;
+  position:        relative;
 }
-.link:hover { background: var(--bg-elevated); color: var(--text-1); }
+.link:hover { background: var(--surface2); color: var(--text); }
 
+/* Activo — pill verde muy sutil */
 .active {
-  background: var(--lime-dim) !important;
-  color:      var(--lime-bright) !important;
+  background: var(--accent-bg) !important;
+  color:      var(--accent)    !important;
+  font-weight: 600;
 }
-.active:hover { background: rgba(163,230,53,0.15) !important; }
+.active:hover { background: #dcefd0 !important; }
 
-.iconWrap {
-  width:       32px;
-  height:      32px;
-  display:     flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.linkLabel {
-  font-size:  0.875rem;
-  font-weight: 500;
-  opacity:    0;
-  transform:  translateX(-8px);
-  transition: opacity var(--t-base) var(--ease),
-              transform var(--t-base) var(--ease);
-}
-
-/* Labels visibles cuando expandido */
-.exp .linkLabel {
-  opacity:   1;
-  transform: translateX(0);
-}
-
-/* Punto activo — visible solo en estado colapsado */
-.activeDot {
+/* Indicador activo — línea izquierda */
+.active::before {
+  content:       '';
   position:      absolute;
-  right:         8px;
-  width:         5px;
-  height:        5px;
-  border-radius: 50%;
-  background:    var(--lime);
-  opacity:       0;
-  transition:    opacity var(--t-fast);
+  left:          -10px;
+  top:           50%;
+  transform:     translateY(-50%);
+  width:         3px;
+  height:        16px;
+  background:    var(--accent);
+  border-radius: 0 var(--r-xs) var(--r-xs) 0;
 }
-.active .activeDot    { opacity: 1; }
-.exp   .activeDot     { opacity: 0; }
 
-.footer { padding: 4px 10px; }
-.ver    { font-size: 0.65rem; color: var(--text-3); white-space: nowrap; }
+.iconWrap { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.label    { flex: 1; }
 
-/* Hamburguesa — solo móvil */
-.hamburger {
-  display:       none;
-  position:      fixed;
-  bottom:        24px;
-  right:         20px;
-  z-index:       300;
-  width:         44px;
-  height:        44px;
-  border-radius: 50%;
-  border:        1px solid var(--lime-border);
-  background:    var(--lime-dim);
-  color:         var(--lime);
-  align-items:   center;
+/* Footer */
+.footer { padding: 12px 10px 0; border-top: 1px solid var(--border); }
+.ver    { font-size: 0.68rem; color: var(--muted); opacity: 0.6; }
+
+/* Botón menú — solo móvil */
+.menuBtn {
+  display:         none;
+  position:        fixed;
+  bottom:          20px;
+  right:           20px;
+  z-index:         300;
+  width:           44px;
+  height:          44px;
+  border-radius:   50%;
+  border:          1px solid var(--border2);
+  background:      var(--accent);
+  color:           var(--text-inv);
+  align-items:     center;
   justify-content: center;
-  box-shadow:    var(--shadow-lime);
+  box-shadow:      var(--shadow-lg);
+  cursor:          pointer;
 }
-
 .overlay {
-  display:  none;
-  position: fixed;
-  inset:    0;
-  top:      var(--navbar-h);
-  background: rgba(0,0,0,0.6);
-  z-index:  200;
+  display:    none;
+  position:   fixed;
+  inset:      0;
+  top:        var(--navbar-h);
+  background: rgba(26,26,24,0.4);
+  z-index:    200;
   backdrop-filter: blur(2px);
 }
 
 @media (max-width: 768px) {
   .sidebar {
-    position:  fixed;
-    top:       var(--navbar-h);
-    left:      0;
-    height:    calc(100vh - var(--navbar-h));
-    width:     var(--sidebar-w-exp);
-    z-index:   250;
-    transform: translateX(-100%);
-    transition: transform var(--t-slow) var(--ease);
+    position:   fixed;
+    top:        var(--navbar-h);
+    left:       0;
+    height:     calc(100vh - var(--navbar-h));
+    z-index:    250;
+    transform:  translateX(-100%);
+    box-shadow: var(--shadow-lg);
+    transition: transform var(--t-slow) var(--ease) !important;
   }
-  .sidebar .linkLabel { opacity: 1; transform: none; }
-  .mobileOpen         { transform: translateX(0); }
-  .hamburger          { display: flex; }
-  .overlay            { display: block; }
+  .open        { transform: translateX(0); }
+  .menuBtn     { display: flex; }
+  .overlay     { display: block; }
 }

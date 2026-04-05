@@ -1,154 +1,134 @@
 /*
- * tokens.css — Obsidian Finance
+ * tokens.css — Editorial Finance
  * ─────────────────────────────────────────────────────────────
- * MODO CLARO por defecto (:root)
- * MODO OSCURO cuando <html data-theme="dark">
+ * Paleta cálida con acento verde bosque.
+ * Modo claro por defecto. Modo oscuro con [data-theme="dark"].
  *
- * El hook useTheme aplica data-theme="dark" al elemento <html>.
- * Todo el CSS reacciona automáticamente a ese cambio.
+ * Tipografías:
+ *   Fraunces    → números hero, títulos editoriales
+ *   Cabinet Grotesk → toda la UI
+ *   DM Mono     → valores técnicos, código
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Cabinet+Grotesk:wght@400;500;700&display=swap');
 
 /* ══════════════════════════════════════════════
    MODO CLARO — predeterminado
 ══════════════════════════════════════════════ */
 :root {
-  /* Superficies */
-  --bg:           #f5f5f2;
-  --bg-elevated:  #efefeb;
-  --bg-card:      #ffffff;
-  --bg-card-hover:#fafaf8;
-  --bg-input:     #f8f8f5;
-  --bg-sidebar:   #ffffff;
-  --bg-overlay:   rgba(22, 163, 74, 0.04);
+  /* ── Paleta base ──────────────────────────── */
+  --bg:           #F5F3EE;
+  --surface:      #FAFAF8;
+  --surface2:     #EFEFEA;
+  --surface3:     #E8E6DF;
+  --surface-inset:#EDEBE4;
+  --border:       rgba(0,0,0,0.09);
+  --border2:      rgba(0,0,0,0.14);
+  --border-strong:rgba(0,0,0,0.20);
+  --border-focus: rgba(28,95,58,0.55);
 
-  /* Acento — verde financiero */
-  --lime:         #16a34a;
-  --lime-bright:  #15803d;
-  --lime-dim:     rgba(22, 163, 74, 0.08);
-  --lime-glow:    rgba(22, 163, 74, 0.20);
-  --lime-border:  rgba(22, 163, 74, 0.25);
+  /* ── Texto ────────────────────────────────── */
+  --text:         #1A1A18;
+  --muted:        #6B6B66;
+  --text-inv:     #FAFAF8;
 
-  /* Texto */
-  --text-1:       #0d0d0d;
-  --text-2:       #5a5a72;
-  --text-3:       #ababc0;
-  --text-4:       #f4f4f8;
+  /* ── Acento — verde bosque ────────────────── */
+  --accent:       #1C5F3A;
+  --accent-hover: #174D2F;
+  --accent-bg:    #EAF3DE;
+  --accent-muted: #3B6D11;
+  --accent-subtle:rgba(28,95,58,0.06);
 
-  /* Bordes */
-  --border:       rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(0, 0, 0, 0.15);
-  --border-focus: rgba(22, 163, 74, 0.5);
+  /* ── Estados semánticos ───────────────────── */
+  --danger:       #A32D2D;
+  --danger-bg:    #FCEBEB;
+  --warn:         #854F0B;
+  --warn-bg:      #FAEEDA;
+  --info:         #185FA5;
+  --info-bg:      #E6F1FB;
 
-  /* Estados */
-  --green:        #16a34a;
-  --green-bg:     rgba(22, 163, 74, 0.08);
-  --red:          #dc2626;
-  --red-bg:       rgba(220, 38, 38, 0.08);
-  --amber:        #d97706;
-  --amber-bg:     rgba(217, 119, 6, 0.08);
-  --blue:         #2563eb;
-  --blue-bg:      rgba(37, 99, 235, 0.08);
+  /* ── Tipografías ──────────────────────────── */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Cabinet Grotesk', system-ui, sans-serif;
+  --font-mono:    'DM Mono', monospace;
 
-  /* Sombras */
-  --shadow-sm:    0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md:    0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
-  --shadow-lg:    0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.04);
-  --shadow-lime:  0 0 20px rgba(22, 163, 74, 0.12);
+  /* ── Sombras ──────────────────────────────── */
+  --shadow-xs:    0 1px 2px rgba(26,26,24,0.06);
+  --shadow-sm:    0 1px 4px rgba(26,26,24,0.08), 0 1px 2px rgba(26,26,24,0.04);
+  --shadow-md:    0 4px 12px rgba(26,26,24,0.08), 0 2px 4px rgba(26,26,24,0.04);
+  --shadow-lg:    0 8px 24px rgba(26,26,24,0.10), 0 4px 8px rgba(26,26,24,0.04);
+  --shadow-focus: 0 0 0 3px rgba(28,95,58,0.18);
 
-  /* Tipografía */
-  --font-display: 'Syne', system-ui, sans-serif;
-  --font-ui:      'Outfit', system-ui, sans-serif;
-
-  /* Radios */
+  /* ── Radios ───────────────────────────────── */
+  --r-xs:  3px;
   --r-sm:  6px;
   --r-md:  10px;
-  --r-lg:  16px;
-  --r-xl:  24px;
-  --r-2xl: 32px;
+  --r-lg:  14px;
+  --r-xl:  20px;
+  --r-2xl: 28px;
+  --r-pill:99px;
 
-  /* Layout */
-  --sidebar-w:    72px;
-  --sidebar-w-exp:220px;
-  --navbar-h:     58px;
+  /* ── Layout ───────────────────────────────── */
+  --navbar-h:     56px;
+  --sidebar-w:    240px;
 
-  /* Transiciones */
-  --ease:  cubic-bezier(0.16, 1, 0.3, 1);
-  --t-fast:0.12s;
-  --t-base:0.22s;
-  --t-slow:0.4s;
+  /* ── Transiciones ─────────────────────────── */
+  --ease:   cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 0.10s;
+  --t-base: 0.18s;
+  --t-slow: 0.32s;
 }
 
 /* ══════════════════════════════════════════════
-   MODO OSCURO — se activa con data-theme="dark"
+   MODO OSCURO — data-theme="dark"
    El hook useTheme hace:
      document.documentElement.setAttribute('data-theme', 'dark')
 ══════════════════════════════════════════════ */
 [data-theme="dark"] {
-  /* Superficies */
-  --bg:           #0a0a0f;
-  --bg-elevated:  #0f0f18;
-  --bg-card:      #13131f;
-  --bg-card-hover:#161625;
-  --bg-input:     #0f0f1a;
-  --bg-sidebar:   #0d0d16;
-  --bg-overlay:   rgba(163, 230, 53, 0.04);
+  --bg:           #141410;
+  --surface:      #1C1C18;
+  --surface2:     #242420;
+  --surface3:     #2C2C28;
+  --surface-inset:#1A1A16;
+  --border:       rgba(255,255,255,0.07);
+  --border2:      rgba(255,255,255,0.12);
+  --border-strong:rgba(255,255,255,0.18);
+  --border-focus: rgba(87,188,113,0.6);
 
-  /* Acento — verde-lima eléctrico en oscuro */
-  --lime:         #a3e635;
-  --lime-bright:  #bef264;
-  --lime-dim:     rgba(163, 230, 53, 0.12);
-  --lime-glow:    rgba(163, 230, 53, 0.25);
-  --lime-border:  rgba(163, 230, 53, 0.3);
+  --text:         #EEECEA;
+  --muted:        #8A8A82;
+  --text-inv:     #141410;
 
-  /* Texto */
-  --text-1:       #f4f4f8;
-  --text-2:       #8585a0;
-  --text-3:       #3d3d55;
-  --text-4:       #0d0d0d;
+  --accent:       #57BC71;
+  --accent-hover: #6DD084;
+  --accent-bg:    rgba(87,188,113,0.12);
+  --accent-muted: #7DD494;
+  --accent-subtle:rgba(87,188,113,0.07);
 
+  --danger:       #E06C6C;
+  --danger-bg:    rgba(224,108,108,0.10);
+  --warn:         #D4943A;
+  --warn-bg:      rgba(212,148,58,0.10);
+  --info:         #5B9BD4;
+  --info-bg:      rgba(91,155,212,0.10);
 
-  /* Bordes */
-  --border:       rgba(255,255,255,0.06);
-  --border-hover: rgba(255,255,255,0.12);
-  --border-focus: rgba(163, 230, 53, 0.5);
-
-  /* Estados */
-  --green:        #4ade80;
-  --green-bg:     rgba(74, 222, 128, 0.08);
-  --red:          #f87171;
-  --red-bg:       rgba(248, 113, 113, 0.08);
-  --amber:        #fbbf24;
-  --amber-bg:     rgba(251, 191, 36, 0.08);
-  --blue:         #60a5fa;
-  --blue-bg:      rgba(96, 165, 250, 0.08);
-
-  /* Sombras */
-  --shadow-sm:    0 1px 3px rgba(0,0,0,0.5);
-  --shadow-md:    0 4px 16px rgba(0,0,0,0.6);
-  --shadow-lg:    0 8px 32px rgba(0,0,0,0.7);
-  --shadow-lime:  0 0 24px rgba(163,230,53,0.15);
+  --shadow-xs:    0 1px 2px rgba(0,0,0,0.4);
+  --shadow-sm:    0 1px 4px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:    0 4px 12px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.3);
+  --shadow-lg:    0 8px 24px rgba(0,0,0,0.6), 0 4px 8px rgba(0,0,0,0.3);
+  --shadow-focus: 0 0 0 3px rgba(87,188,113,0.22);
 }
 
 /* ══════════════════════════════════════════════
-   TRANSICIÓN GLOBAL al cambiar tema
-   Se aplica a todos los elementos automáticamente
+   TRANSICIÓN SUAVE AL CAMBIAR TEMA
 ══════════════════════════════════════════════ */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   transition:
-    background-color 0.25s ease,
-    border-color     0.25s ease,
-    color            0.2s ease,
-    box-shadow       0.25s ease !important;
+    background-color 0.22s ease,
+    border-color     0.22s ease,
+    color            0.15s ease !important;
 }
 
-/* Excepción: elementos que NO deben transicionar
-   (evita parpadeos en animaciones propias) */
-.animate-up,
-.animate-in,
-[class*="skeleton"] {
-  transition: none !important;
-}
+/* Excepción: no transicionar animaciones propias */
+.animate-up, .animate-in, .animate-scale,
+[class*="skeleton"] { transition: none !important; }

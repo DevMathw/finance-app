@@ -1,6 +1,6 @@
 /**
- * Dashboard.jsx — Obsidian Finance
- * Hero con balance grande, 4 KPIs, gráficas y últimas tx.
+ * Dashboard.jsx — Editorial Finance
+ * Balance en Fraunces hero, KPIs, gráficas y transacciones recientes.
  */
 import { Link }                            from 'react-router-dom'
 import { Wallet, TrendingUp, TrendingDown, Percent, ArrowUpRight, Plus } from 'lucide-react'
@@ -20,7 +20,7 @@ const CAT_EMOJI = {
 export default function Dashboard() {
   const { transactions, summary, loading, error } = useTransactions()
 
-  if (error) return <div className="alert alert-error mt-6">{error}</div>
+  if (error) return <div className="alert alert-danger mt-6">{error}</div>
 
   const {
     totalIncome  = 0,
@@ -34,34 +34,35 @@ export default function Dashboard() {
 
   return (
     <div className={styles.page}>
-      {/* ── Hero balance ──────────────────────────── */}
+
+      {/* ── Hero balance ─────────────────────────── */}
       <div className={`${styles.hero} animate-up`}>
         <div className={styles.heroLeft}>
-          <p className="label-sm">Balance total</p>
-          <p className={`${styles.heroValue} display ${balance >= 0 ? 'text-gradient' : 'text-red'}`}>
+          <p className="label">Balance total</p>
+          <p className={`${styles.heroValue} display-lg ${balance >= 0 ? 'amount-positive' : 'amount-negative'}`}>
             {loading ? '—' : formatCurrency(balance)}
           </p>
-          <p className={styles.heroSub}>
+          <p className={styles.heroDate}>
             Actualizado {new Date().toLocaleDateString('es-CO', { day:'numeric', month:'long' })}
           </p>
         </div>
         <div className={styles.heroRight}>
           <Link to="/transactions">
-            <Button variant="lime" size="sm" icon={<Plus size={14} />}>
+            <Button variant="primary" size="sm" icon={<Plus size={14} />}>
               Nueva transacción
             </Button>
           </Link>
         </div>
       </div>
 
-      {/* ── KPIs ──────────────────────────────────── */}
-      <div className={`grid-4 mb-8`}>
+      {/* ── KPIs ────────────────────────────────── */}
+      <div className="grid-4 mb-6">
         <KpiCard
           label="Ingresos"
           value={formatCurrency(totalIncome)}
           subtext="Total registrado"
           icon={TrendingUp}
-          variant="green"
+          variant="positive"
           delay={0} loading={loading}
         />
         <KpiCard
@@ -69,7 +70,7 @@ export default function Dashboard() {
           value={formatCurrency(totalExpense)}
           subtext="Total registrado"
           icon={TrendingDown}
-          variant="red"
+          variant="negative"
           delay={1} loading={loading}
         />
         <KpiCard
@@ -77,7 +78,7 @@ export default function Dashboard() {
           value={formatCurrency(balance)}
           subtext="Ingresos − Gastos"
           icon={Wallet}
-          variant={balance >= 0 ? 'lime' : 'red'}
+          variant={balance >= 0 ? 'positive' : 'negative'}
           delay={2} loading={loading}
         />
         <KpiCard
@@ -91,27 +92,27 @@ export default function Dashboard() {
         />
       </div>
 
-      {/* ── Gráficas ──────────────────────────────── */}
-      <div className={`grid-2 mb-8`}>
-        <div className={`card animate-up d-3`}>
+      {/* ── Gráficas ────────────────────────────── */}
+      <div className="grid-2 mb-6">
+        <div className="card card-md animate-up delay-3">
           <div className="card-header">
-            <p className="label-sm">Gastos por categoría</p>
+            <p className="label">Gastos por categoría</p>
           </div>
           <DonutChart data={byCategory} />
         </div>
 
-        <div className={`card animate-up d-4`}>
+        <div className="card card-md animate-up delay-4">
           <div className="card-header">
-            <p className="label-sm">Ingresos vs Gastos — 6 meses</p>
+            <p className="label">Ingresos vs Gastos — 6 meses</p>
           </div>
           <BarChart transactions={transactions} />
         </div>
       </div>
 
-      {/* ── Últimas transacciones ──────────────────── */}
-      <div className={`card animate-up d-5`}>
+      {/* ── Últimas transacciones ────────────────── */}
+      <div className="card card-md animate-up delay-5">
         <div className="card-header">
-          <p className="label-sm">Últimas transacciones</p>
+          <p className="label">Últimas transacciones</p>
           <Link to="/transactions" className={styles.viewAll}>
             Ver todas <ArrowUpRight size={13} />
           </Link>
@@ -122,30 +123,34 @@ export default function Dashboard() {
             {[1,2,3,4].map((i) => (
               <div key={i} className={styles.skRow}>
                 <div className={`skeleton ${styles.sk1}`} />
-                <div className={`skeleton ${styles.sk2}`} />
-                <div className={`skeleton ${styles.sk3}`} />
+                <div style={{ flex:1, display:'flex', flexDirection:'column', gap:5 }}>
+                  <div className={`skeleton ${styles.sk2}`} />
+                  <div className={`skeleton ${styles.sk3}`} />
+                </div>
+                <div className={`skeleton ${styles.sk4}`} />
               </div>
             ))}
           </div>
         ) : recent.length === 0 ? (
           <div className={styles.empty}>
-            <p>Sin transacciones. <Link to="/transactions" className={styles.emptyLink}>Agrega la primera →</Link></p>
+            <p>Sin transacciones. <Link to="/transactions">Agrega la primera →</Link></p>
           </div>
         ) : (
-          <ul className={styles.list}>
-            {recent.map((t, i) => (
-              <li key={t.id} className={`${styles.item} animate-up d-${(i % 6) + 1}`}>
-                <span className={styles.emoji}>{CAT_EMOJI[t.category] || '📦'}</span>
-                <div className={styles.info}>
-                  <p className={styles.desc}>{t.description}</p>
-                  <p className={styles.meta}>
-                    <span className={`badge ${t.type === 'income' ? 'badge-green' : 'badge-red'}`}>
+          <ul className="tx-list">
+            {recent.map((t) => (
+              <li key={t.id} className="tx-item">
+                <div className="tx-icon">{CAT_EMOJI[t.category] || '📦'}</div>
+                <div className="tx-body">
+                  <p className="tx-desc">{t.description}</p>
+                  <div className="tx-meta">
+                    <span className={`badge ${t.type === 'income' ? 'badge-accent' : 'badge-danger'}`}>
                       {t.type === 'income' ? 'Ingreso' : 'Gasto'}
                     </span>
-                    {t.category} · {formatDateShort(t.date)}
-                  </p>
+                    <span>{t.category}</span>
+                    <span>{formatDateShort(t.date)}</span>
+                  </div>
                 </div>
-                <span className={`${styles.amount} ${t.type === 'income' ? styles.pos : styles.neg}`}>
+                <span className={`tx-amount ${t.type === 'income' ? 'positive' : 'negative'}`}>
                   {t.type === 'income' ? '+' : '−'}{formatCurrency(t.amount)}
                 </span>
               </li>

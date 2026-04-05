@@ -9,116 +9,100 @@
   overflow:        hidden;
 }
 
-/* Rejilla de puntos */
-.grid {
-  position:       absolute;
-  inset:          0;
-  background-image: radial-gradient(rgba(163,230,53,0.08) 1px, transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
+/* Patrón de puntos cálido */
+.dots {
+  position:        absolute;
+  inset:           0;
+  background-image: radial-gradient(var(--border2) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events:  none;
+  opacity:         0.6;
 }
 
-/* Orbes de luz */
-.orb1 {
-  position: absolute;
-  top: -120px; left: -80px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(163,230,53,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.orb2 {
-  position: absolute;
-  bottom: -80px; right: -60px;
-  width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(96,165,250,0.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.themeBtn { position: absolute; top: 20px; right: 24px; z-index: 10; }
+.themeBtn { position: absolute; top: 20px; right: 20px; z-index: 10; }
 
 /* Card */
 .card {
-  background:    var(--bg-card);
-  border:        1px solid var(--border);
-  border-radius: var(--r-xl);
-  padding:       44px 40px;
-  width:         100%;
-  max-width:     420px;
-  box-shadow:    var(--shadow-lg);
-  display:       flex;
+  width:     100%;
+  max-width: 400px;
+  display:   flex;
   flex-direction: column;
-  gap:           24px;
-  position:      relative;
-  z-index:       1;
+  gap:       22px;
+  padding:   40px 36px !important;
+  position:  relative;
+  z-index:   1;
 }
 
-/* Brillo superior en el card */
+/* Línea decorativa superior */
 .card::before {
   content:    '';
   position:   absolute;
   top:        0; left: 50%;
   transform:  translateX(-50%);
-  width:      60%;
-  height:     1px;
-  background: linear-gradient(90deg, transparent, var(--lime-border), transparent);
+  width:      50%;
+  height:     2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  border-radius: 0 0 var(--r-pill) var(--r-pill);
 }
 
-.brand     { display: flex; align-items: center; gap: 8px; }
-.logo      { font-size: 1.4rem; color: var(--lime); }
-.appName   { font-size: 1rem; color: var(--text-1); }
+/* Marca */
+.brand    { display: flex; align-items: center; gap: 8px; }
+.logoMark { font-size: 1.2rem; color: var(--accent); }
+.logoName {
+  font-family:    var(--font-display);
+  font-style:     italic;
+  font-weight:    400;
+  font-size:      1.1rem;
+  color:          var(--text);
+  letter-spacing: -0.01em;
+}
 
+/* Encabezado */
 .head  { }
-.title { font-size: 1.5rem; color: var(--text-1); }
-.sub   { font-size: 0.85rem; color: var(--text-2); margin-top: 6px; line-height: 1.5; }
+.title { color: var(--text); }
+.sub   { font-size: 0.85rem; color: var(--muted); margin-top: 5px; line-height: 1.5; }
 
-.form  { display: flex; flex-direction: column; gap: 14px; }
+/* Formulario */
+.form { display: flex; flex-direction: column; gap: 13px; }
 
-/* Input con ícono */
-.inputWrap    { position: relative; }
-.inputIcon    { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-3); pointer-events: none; }
-.indented     { padding-left: 36px !important; }
-.withToggle   { padding-right: 40px !important; }
+/* Botón ojo */
 .eyeBtn {
   position:   absolute;
   right:      10px; top: 50%;
   transform:  translateY(-50%);
-  background: none;
-  border:     none;
-  color:      var(--text-3);
-  display:    flex;
-  align-items:center;
-  padding:    4px;
-  border-radius: 4px;
-  transition: color var(--t-fast);
+  background: none; border: none;
+  color:      var(--muted);
+  display:    flex; align-items: center;
+  padding:    4px; border-radius: var(--r-xs);
+  cursor:     pointer;
+  transition: color var(--t-fast) !important;
 }
-.eyeBtn:hover { color: var(--text-1); }
+.eyeBtn:hover { color: var(--text); }
 
 /* Divisor OR */
-.divider {
+.orDiv {
   display:     flex;
   align-items: center;
-  gap:         12px;
-  color:       var(--text-3);
-  font-size:   0.75rem;
+  gap:         10px;
+  color:       var(--muted);
+  font-size:   0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
-.divider::before,
-.divider::after {
-  content:    '';
-  flex:       1;
-  height:     1px;
-  background: var(--border);
-}
+.orDiv::before, .orDiv::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
 
-.switch    { text-align: center; font-size: 0.85rem; color: var(--text-2); }
+/* Switch */
+.switch    { text-align: center; font-size: 0.85rem; color: var(--muted); }
 .switchBtn {
   background: none; border: none;
-  color:      var(--lime-bright);
-  font-weight:600; font-size: 0.85rem;
+  color:      var(--accent);
+  font-weight: 600; font-size: 0.85rem;
   cursor:     pointer;
-  transition: color var(--t-fast);
+  transition: color var(--t-fast) !important;
+  font-family: var(--font-body);
 }
-.switchBtn:hover { color: var(--lime); text-decoration: underline; }
+.switchBtn:hover { color: var(--accent-hover); text-decoration: underline; }
 
 @media (max-width: 480px) {
-  .card { padding: 32px 24px; }
+  .card { padding: 28px 20px !important; }
 }

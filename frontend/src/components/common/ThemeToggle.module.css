@@ -1,14 +1,15 @@
 .btn {
-  width:         34px;
-  height:        34px;
-  border-radius: var(--r-sm);
-  border:        1px solid var(--border);
-  display:       flex;
-  align-items:   center;
+  width:           32px;
+  height:          32px;
+  border-radius:   var(--r-sm);
+  border:          1px solid var(--border2);
+  background:      var(--surface2);
+  color:           var(--muted);
+  display:         flex;
+  align-items:     center;
   justify-content: center;
-  transition:    all var(--t-fast);
-  background:    var(--bg-elevated);
+  cursor:          pointer;
+  transition:      all var(--t-fast) !important;
 }
-.dark  { color: var(--amber); border-color: rgba(251,191,36,0.2); }
-.light { color: var(--text-2); }
-.btn:hover { border-color: var(--border-hover); color: var(--text-1); }
+.btn:hover { border-color: var(--border-strong); color: var(--text); background: var(--surface3); }
+.dark      { color: var(--warn); border-color: rgba(133,79,11,0.25); }

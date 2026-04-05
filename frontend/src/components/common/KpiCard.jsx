@@ -1,7 +1,7 @@
 /**
- * KpiCard.jsx
- * Tarjeta de KPI con número hero en degradado, ícono Lucide
- * y barra de tendencia animada.
+ * KpiCard.jsx — Editorial Finance
+ * Tarjeta de KPI con número hero en Fraunces, ícono Lucide
+ * y tendencia. Usa clases globales .card-kpi, .kpi-value, etc.
  */
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react'
 import styles from './KpiCard.module.css'
@@ -10,46 +10,46 @@ export default function KpiCard({
   label,
   value,
   subtext,
-  trend,       // número positivo/negativo/null
-  icon: Icon,  // componente Lucide
-  variant = 'default', // default | lime | green | red
+  trend,
+  icon: Icon,
+  variant = 'default', // default | positive | negative
   delay   = 0,
   loading = false,
 }) {
   const TrendIcon = trend > 0 ? TrendingUp : trend < 0 ? TrendingDown : Minus
-  const trendCls  = trend > 0 ? styles.up : trend < 0 ? styles.down : styles.flat
+  const trendPos  = trend > 0
 
   if (loading) return (
-    <div className={`${styles.card} ${styles[variant]}`}>
-      <div className={`skeleton ${styles.skIcon}`} />
+    <div className={`card card-kpi ${styles.card}`}>
       <div className={`skeleton ${styles.skLabel}`} />
       <div className={`skeleton ${styles.skValue}`} />
+      <div className={`skeleton ${styles.skSub}`} />
     </div>
   )
 
   return (
-    <div className={`${styles.card} ${styles[variant]} animate-up d-${delay + 1}`}>
+    <div className={`card card-kpi ${styles.card} animate-up delay-${delay + 1}`}>
       {/* Ícono */}
       {Icon && (
         <div className={`${styles.iconWrap} ${styles[`icon_${variant}`]}`}>
-          <Icon size={18} strokeWidth={2} />
+          <Icon size={16} strokeWidth={2} />
         </div>
       )}
 
       {/* Label */}
-      <p className={`label-xs ${styles.label}`}>{label}</p>
+      <p className="kpi-label">{label}</p>
 
-      {/* Valor hero */}
-      <p className={`display ${styles.value} ${variant === 'lime' ? 'text-gradient' : ''}`}>
+      {/* Valor — Fraunces para impacto visual */}
+      <p className={`kpi-value ${variant === 'positive' ? 'amount-positive' : variant === 'negative' ? 'amount-negative' : ''}`}>
         {value}
       </p>
 
       {/* Footer */}
       <div className={styles.footer}>
-        {subtext && <span className={styles.subtext}>{subtext}</span>}
+        {subtext && <span className="kpi-sub">{subtext}</span>}
         {trend !== undefined && trend !== null && (
-          <span className={`${styles.trend} ${trendCls}`}>
-            <TrendIcon size={12} strokeWidth={2.5} />
+          <span className={`${styles.trend} ${trendPos ? styles.trendUp : styles.trendDown}`}>
+            <TrendIcon size={11} strokeWidth={2.5} />
             {Math.abs(trend)}%
           </span>
         )}
